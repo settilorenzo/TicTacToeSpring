@@ -14,6 +14,12 @@ npx create-react-app frontend --template typescript
 
 In folder frontend:
 
-```
+```shell
 npm run start
+```
+
+and
+
+```shell
+npm install @mui/material @emotion/react @emotion/styled
 ```

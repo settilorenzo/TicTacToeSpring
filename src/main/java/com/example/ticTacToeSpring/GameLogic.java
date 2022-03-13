@@ -13,14 +13,14 @@ class InvalidTicTacToeInput extends RuntimeException {
 public class GameLogic {
 
     public CellStatus[][] gameTable = new CellStatus[3][3];
-    public Player currentPlayer; // X o O
+    public Player currentPlayer;
 
     GameLogic() {
-        for (int i = 0; i < 3; i++)                 // <-
-            for (int j = 0; j < 3; j++)             // <- iterate over all the cells of the board
-                gameTable[i][j] = CellStatus.E; // <- Set all cells empty
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                gameTable[i][j] = CellStatus.E;
 
-        currentPlayer = Player.X;                   // <- Set the initial player
+        currentPlayer = Player.X;
     }
 
     public GameLogic(TicTacToeMove move) {
@@ -77,15 +77,15 @@ public class GameLogic {
             for (var l : row)
                 if (l == CellStatus.E)
                     return false;
-
         return true;
     }
 
+
     public TicTacToeMove toEntity() {
-        var res = Arrays.stream(gameTable)
+        var result = Arrays.stream(gameTable)
                 .map(row -> Arrays.stream(row).map(Enum::toString).collect(Collectors.joining(",")))
                 .collect(Collectors.joining(";"));
-        return new TicTacToeMove(res, currentPlayer);
+        return new TicTacToeMove(result, currentPlayer);
     }
 
 }
