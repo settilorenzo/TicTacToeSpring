@@ -15,10 +15,7 @@ const nextMove = (i: number, j: number) =>
 type Move = {
     currentPlayer: Player,
     gameTable: CellStatus[][],
-    validMove: boolean,
-    winner: Player | null,
-    isDraw: boolean,
-    gameOver: boolean
+    winner: Player | null
 };
 
 const App = () => {
@@ -35,15 +32,6 @@ const App = () => {
             {cell === CellStatus.E ? '-' : cell === CellStatus.X ? 'X' : 'O'}
         </Button>
     }
-
-    const Outcome = ({winner}: { winner: Player | null }) => <>
-        <Button onClick={() => createGame().then(setMove)}
-                color="primary"
-                variant="contained"
-                style={{margin: '20px'}}>
-            Start a new game
-        </Button>
-    </>
 
     const CurrentPlayer = ({currentPlayer}: { currentPlayer: Player }) => <>
         <h4>Current player is:</h4>
@@ -74,7 +62,12 @@ const App = () => {
         </div>
 
         <div>
-            <Outcome winner={move.winner}/>
+            <Button onClick={() => createGame().then(setMove)}
+                    color="primary"
+                    variant="contained"
+                    style={{margin: '20px'}}>
+                Start a new game
+            </Button>
         </div>
 
         <div>
