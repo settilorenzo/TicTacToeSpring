@@ -37,10 +37,6 @@ const App = () => {
     }
 
     const Outcome = ({winner}: { winner: Player | null }) => <>
-        <Chip label={winner === null ? 'Draw' : winner === Player.X ? 'X wins the game' : 'O wins the game'}
-              color="success"
-              variant="outlined"
-              style={{margin: '20px', fontSize: "30px"}}/>
         <Button onClick={() => createGame().then(setMove)}
                 color="primary"
                 variant="contained"
@@ -49,11 +45,13 @@ const App = () => {
         </Button>
     </>
 
-    const CurrentPlayer = ({currentPlayer}: { currentPlayer: Player }) =>
+    const CurrentPlayer = ({currentPlayer}: { currentPlayer: Player }) => <>
+        <h4>Current player is:</h4>
         <Chip label={currentPlayer === Player.X ? '   X   ' : '   O   '}
               color={currentPlayer === Player.X ? 'error' : 'success'}
               variant="outlined"
               style={{margin: '20px', fontSize: "30px"}}/>
+    </>
 
     if (!move) return <div>Loading...</div>;
 
@@ -76,7 +74,7 @@ const App = () => {
         </div>
 
         <div>
-            {move.gameOver && <Outcome winner={move.winner}/>}
+            <Outcome winner={move.winner}/>
         </div>
 
         <div>
